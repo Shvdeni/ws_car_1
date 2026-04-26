@@ -1,0 +1,16 @@
+Package: touch_car_gazebo
+
+What it is for:
+Gazebo simulation package. It starts a 1.5 x 1.5 meter room world, spawns the
+small touch bumper car, and starts the reactive driving node.
+
+Dependency note:
+  This launch uses Gazebo Sim through ros_gz.
+  On ROS 2 Jazzy install it with:
+    sudo apt update && sudo apt install ros-jazzy-ros-gz
+
+Useful commands:
+  source /opt/ros/jazzy/setup.bash
+  colcon build
+  source install/setup.bash
+  ros2 launch touch_car_gazebo room.launch.py
