@@ -1,11 +1,13 @@
 Package: touch_car_description
 
 What it is for:
-Robot description package for a small three-wheel car. The car is about 15 cm
-long, has two motorized rear wheels, one passive caster wheel, and a front
-touch bumper contact sensor for Gazebo.
+Robot description package for a small three-wheel car. The car has two
+motorized rear wheels, one passive caster wheel, a front bumper, and a front
+camera model. The launched Gazebo SDF includes the active 650 x 900 front camera
+sensor.
 
 Useful commands:
   source /opt/ros/jazzy/setup.bash
   colcon build --packages-select touch_car_description
+  source install/setup.bash
   ros2 launch touch_car_gazebo room.launch.py

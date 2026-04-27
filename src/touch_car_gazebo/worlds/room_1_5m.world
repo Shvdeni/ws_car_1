@@ -5,6 +5,9 @@
     <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"/>
     <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
     <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
 
     <gravity>0 0 -9.81</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
@@ -154,53 +157,20 @@
       </link>
     </model>
 
-    <model name="box_obstacle">
+    <model name="red_sphere">
       <static>true</static>
-      <pose>0.32 -0.18 0.06 0 0 0.45</pose>
+      <pose>0.42 0.25 0.045 0 0 0</pose>
       <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.18 0.12 0.12</size>
-            </box>
-          </geometry>
-        </collision>
         <visual name="visual">
           <geometry>
-            <box>
-              <size>0.18 0.12 0.12</size>
-            </box>
+            <sphere>
+              <radius>0.045</radius>
+            </sphere>
           </geometry>
           <material>
-            <ambient>0.45 0.48 0.52 1</ambient>
-            <diffuse>0.45 0.48 0.52 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-
-    <model name="cylinder_obstacle">
-      <static>true</static>
-      <pose>-0.28 0.24 0.06 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <cylinder>
-              <radius>0.07</radius>
-              <length>0.12</length>
-            </cylinder>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <cylinder>
-              <radius>0.07</radius>
-              <length>0.12</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <ambient>0.72 0.22 0.16 1</ambient>
-            <diffuse>0.72 0.22 0.16 1</diffuse>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+            <specular>0.4 0.1 0.1 1</specular>
           </material>
         </visual>
       </link>

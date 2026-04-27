@@ -9,6 +9,7 @@
   <xacro:property name="rear_x" value="-0.045"/>
   <xacro:property name="front_x" value="0.055"/>
   <xacro:property name="bumper_x" value="0.075"/>
+  <xacro:property name="camera_x" value="0.135"/>
 
   <material name="blue">
     <color rgba="0.10 0.28 0.75 1.0"/>
@@ -18,6 +19,9 @@
   </material>
   <material name="bumper_red">
     <color rgba="0.85 0.08 0.06 1.0"/>
+  </material>
+  <material name="camera_dark">
+    <color rgba="0.02 0.02 0.025 1.0"/>
   </material>
 
   <link name="base_footprint"/>
@@ -133,6 +137,26 @@
     <origin xyz="${bumper_x} 0 0.005" rpy="0 0 0"/>
   </joint>
 
+  <link name="front_camera_link">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="0.024 0.032 0.022"/>
+      </geometry>
+      <material name="camera_dark"/>
+    </visual>
+  </link>
+  <joint name="front_camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_camera_link"/>
+    <origin xyz="${camera_x} 0 0.0375" rpy="0 0 0"/>
+  </joint>
+
   <gazebo reference="base_link">
     <material>Gazebo/Blue</material>
   </gazebo>
@@ -161,6 +185,9 @@
         <topic>/touch_car/bumper_contacts</topic>
       </contact>
     </sensor>
+  </gazebo>
+  <gazebo reference="front_camera_link">
+    <material>Gazebo/Black</material>
   </gazebo>
 
   <gazebo>

@@ -9,6 +9,7 @@ setup(
     data_files=[
         ("share/ament_index/resource_index/packages", [f"resource/{package_name}"]),
         (f"share/{package_name}", ["package.xml", "INFO.txt"]),
+        (f"share/{package_name}/models", ["best.pt"]),
     ],
     install_requires=["setuptools"],
     zip_safe=True,
@@ -20,6 +21,7 @@ setup(
     entry_points={
         "console_scripts": [
             "bumper_driver = touch_car_control.bumper_driver:main",
+            "camera_viewer = touch_car_control.camera_viewer:main",
         ],
     },
 )

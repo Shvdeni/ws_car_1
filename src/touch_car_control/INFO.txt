@@ -1,15 +1,22 @@
 Package: touch_car_control
 
 What it is for:
-ROS 2 Python control node for the car. It drives forward, listens to the
-Gazebo bumper contact topic, backs up about 5 cm after a touch, turns by a
-random angle, and then drives forward again. It supports the Gazebo Sim
-ros_gz contact message used by ROS 2 Jazzy. It also uses odometry as a
-simulation fallback when Gazebo does not emit contact messages for a spawned
-model.
+ROS 2 Python package for the camera-guided car behavior. The bumper_driver node
+rotates the car to scan for a red sphere, reads the front camera image, detects
+the sphere with best.pt when Ultralytics is available, falls back to HSV red
+detection otherwise, drives toward the detection, increments the score when the
+sphere is reached, hides the sphere, respawns it at a new random position, and
+starts scanning again.
+
+It also publishes an annotated detection image on:
+  /touch_car/front_camera/detections
+
+The camera_viewer node opens the "Touch car front camera" OpenCV window and
+shows the annotated detection image.
 
 Useful commands:
   source /opt/ros/jazzy/setup.bash
   colcon build --packages-select touch_car_control
   source install/setup.bash
   ros2 run touch_car_control bumper_driver
+  ros2 run touch_car_control camera_viewer

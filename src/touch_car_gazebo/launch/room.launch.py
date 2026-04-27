@@ -69,6 +69,8 @@ def generate_launch_description():
             "/model/touch_car/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist",
             "/model/touch_car/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry",
             "/touch_car/bumper_contacts@ros_gz_interfaces/msg/Contacts[gz.msgs.Contacts",
+            "/touch_car/front_camera/image@sensor_msgs/msg/Image[gz.msgs.Image",
+            "/world/room_1_5m/set_pose@ros_gz_interfaces/srv/SetEntityPose",
         ],
         output="screen",
     )
@@ -81,10 +83,19 @@ def generate_launch_description():
         parameters=[{"use_sim_time": False}],
     )
 
+    camera_viewer = Node(
+        package="touch_car_control",
+        executable="camera_viewer",
+        name="camera_viewer",
+        output="screen",
+        parameters=[{"use_sim_time": False}],
+    )
+
     return LaunchDescription([
         gazebo,
         robot_state_publisher,
         spawn_robot,
         bridge,
         bumper_driver,
+        camera_viewer,
     ])
